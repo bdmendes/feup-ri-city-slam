@@ -14,7 +14,7 @@ from gym_duckietown.envs import DuckietownEnv
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--env-name", default=None)
-parser.add_argument("--map-name", default="udem1")
+parser.add_argument("--map-name", default="my_map")
 parser.add_argument("--no-pause", action="store_true", help="don't pause on failure")
 args = parser.parse_args()
 
@@ -29,6 +29,8 @@ env.render()
 total_recompense = 0
 
 while True:
+
+    env
 
     lane_pose = env.get_lane_pos2(env.cur_pos, env.cur_angle)
     distance_to_road_center = lane_pose.dist

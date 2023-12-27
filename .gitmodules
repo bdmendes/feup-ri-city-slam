@@ -1,6 +1,0 @@
-[submodule "lib/ORB_SLAM3"]
-	path = lib/ORB_SLAM3
-	url = https://github.com/UZ-SLAMLab/ORB_SLAM3
-[submodule "lib/Pangolin"]
-	path = lib/Pangolin
-	url = https://github.com/stevenlovegrove/Pangolin
