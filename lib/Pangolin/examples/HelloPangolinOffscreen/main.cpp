@@ -1,7 +1,4 @@
-#include <pangolin/display/display.h>
-#include <pangolin/display/view.h>
-#include <pangolin/handler/handler.h>
-#include <pangolin/gl/gldraw.h>
+#include <pangolin/pangolin.h>
 
 int main( int /*argc*/, char** /*argv*/ )
 {
@@ -17,28 +14,35 @@ int main( int /*argc*/, char** /*argv*/ )
         pangolin::ModelViewLookAt(-2,2,-2, 0,0,0, pangolin::AxisY)
     );
 
+    // Create Interactive View in window
+    pangolin::Handler3D handler(s_cam);
+    pangolin::View& d_cam = pangolin::CreateDisplay()
+            .SetBounds(0.0, 1.0, 0.0, 1.0, -float(w)/float(h))
+            .SetHandler(&handler);
+
+    pangolin::SaveWindowOnRender("window");
+
     // create a frame buffer object with colour and depth buffer
     pangolin::GlTexture color_buffer(w,h);
     pangolin::GlRenderBuffer depth_buffer(w,h);
     pangolin::GlFramebuffer fbo_buffer(color_buffer, depth_buffer);
-
     fbo_buffer.Bind();
-    {
-        // Clear screen and activate view to render into
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-        glViewport(0,0,w,h);
-        s_cam.Apply();
 
-        // Render OpenGL Cube
-        pangolin::glDrawColouredCube();
+    // Clear screen and activate view to render into
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    d_cam.Activate(s_cam);
 
-        // Swap frames and Process Events
-        pangolin::FinishFrame();
-    }
+    // Render OpenGL Cube
+    pangolin::glDrawColouredCube();
+
+    // Swap frames and Process Events
+    pangolin::FinishFrame();
+
     fbo_buffer.Unbind();
-
     // download and save the colour buffer
     color_buffer.Save("fbo.png", false);
 
+    pangolin::QuitAll();
+    
     return 0;
 }

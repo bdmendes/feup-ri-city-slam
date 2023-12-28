@@ -1,7 +1,4 @@
-#include <pangolin/display/display.h>
-#include <pangolin/display/view.h>
-#include <pangolin/handler/handler.h>
-#include <pangolin/gl/gldraw.h>
+#include <pangolin/pangolin.h>
 
 int main( int /*argc*/, char** /*argv*/ )
 {
@@ -32,6 +29,6 @@ int main( int /*argc*/, char** /*argv*/ )
         // Swap frames and Process Events
         pangolin::FinishFrame();
     }
-
+    
     return 0;
 }

@@ -36,10 +36,6 @@ int main( int argc, char** argv )
         { "envmap", {"--envmap","-e"}, "Equirect environment map for skybox", 1},
         { "mode", {"--mode"}, "Render mode to use {show_uv, show_texture, show_color, show_normal, show_matcap, show_vertex}", 1},
         { "bounds", {"--aabb"}, "Show axis-aligned bounding-box", 0},
-        { "show_axis", {"--axis"}, "Show axis coordinates for Origin", 0},
-        { "show_x0", {"--x0"}, "Show X=0 Plane", 0},
-        { "show_y0", {"--y0"}, "Show Y=0 Plane", 0},
-        { "show_z0", {"--z0"}, "Show Z=0 Plane", 0},
         { "cull_backfaces", {"--cull"}, "Enable backface culling", 0},
         { "spin", {"--spin"}, "Spin models around an axis {none, negx, x, negy, y, negz, z}", 1},
     }};
@@ -74,12 +70,12 @@ int main( int argc, char** argv )
     int mesh_to_show = -1;
 
     // Create Window for rendering
-    pangolin::CreateWindowAndBind("Main", w, h);
+    pangolin::CreateWindowAndBind("Main",w, h);
     glEnable(GL_DEPTH_TEST);
 
     // Define Projection and initial ModelView matrix
     pangolin::OpenGlRenderState s_cam(
-        pangolin::ProjectionMatrix(w, h, f, f, w/2.0, h/2.0, 0.1, 1000),
+        pangolin::ProjectionMatrix(w, h, f, f, w/2.0, h/2.0, 0.2, 1000),
         pangolin::ModelViewLookAt(1.0, 1.0, 1.0, 0.0, 0.0, 0.0, pangolin::AxisY)
     );
 
@@ -91,10 +87,10 @@ int main( int argc, char** argv )
 
     // Load Geometry asynchronously
     std::vector<std::future<pangolin::Geometry>> geom_to_load;
-    for(const auto& filename : ExpandGlobOption(args["model"]))
+    for(const auto& f : ExpandGlobOption(args["model"]))
     {
-        geom_to_load.emplace_back( std::async(std::launch::async,[filename](){
-            return pangolin::LoadGeometry(filename);
+        geom_to_load.emplace_back( std::async(std::launch::async,[f](){
+            return pangolin::LoadGeometry(f);
         }) );
     }
 
@@ -120,14 +116,9 @@ int main( int argc, char** argv )
                 auto aabb = pangolin::GetAxisAlignedBox(geom);
                 total_aabb.extend(aabb);
                 const Eigen::Vector3f center = total_aabb.center();
-                const Eigen::Vector3f view = center + Eigen::Vector3f(1.2, 0.8,1.2) * std::max( (total_aabb.max() - center).norm(), (center - total_aabb.min()).norm());
+                const Eigen::Vector3f view = center + Eigen::Vector3f(1.2f,1.2f,1.2f) * std::max( (total_aabb.max() - center).norm(), (center - total_aabb.min()).norm());
                 const auto mvm = pangolin::ModelViewLookAt(view[0], view[1], view[2], center[0], center[1], center[2], pangolin::AxisY);
-                const double far = 100.0*(total_aabb.max() - total_aabb.min()).norm();
-                const double near = far / 1e6;
-                const auto proj = pangolin::ProjectionMatrix(w, h, f, f, w/2.0, h/2.0, near, far );
                 s_cam.SetModelViewMatrix(mvm);
-                s_cam.SetProjectionMatrix(proj);
-
                 auto renderable = std::make_shared<GlGeomRenderable>(pangolin::ToGlGeometry(geom), aabb);
                 renderables.push_back(renderable);
                 RenderNode::Edge edge = { spin_transform, { renderable, {} } };
@@ -268,7 +259,6 @@ int main( int argc, char** argv )
             if(show_y0) pangolin::glDraw_y0(10.0, 10);
             if(show_z0) pangolin::glDraw_z0(10.0, 10);
             if(show_axis) pangolin::glDrawAxis(10.0);
-            if(show_bounds) pangolin::glDrawAlignedBox(total_aabb);
 
             glDisable(GL_CULL_FACE);
         }

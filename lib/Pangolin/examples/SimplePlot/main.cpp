@@ -1,5 +1,6 @@
-#include <pangolin/display/display.h>
-#include <pangolin/plot/plotter.h>
+#include <iostream>
+
+#include <pangolin/pangolin.h>
 
 int main(/*int argc, char* argv[]*/)
 {

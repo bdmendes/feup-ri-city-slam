@@ -1,6 +1,6 @@
 # Find Pangolin (https://github.com/stevenlovegrove/Pangolin)
-find_package(Pangolin 0.8 REQUIRED)
+find_package(Pangolin 0.4 REQUIRED)
 include_directories(${Pangolin_INCLUDE_DIRS})
 
 add_executable(HelloPangolin main.cpp)
-target_link_libraries(HelloPangolin pango_display pango_python)
+target_link_libraries(HelloPangolin ${Pangolin_LIBRARIES})

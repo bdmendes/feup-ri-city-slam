@@ -52,14 +52,12 @@ int main( int argc, char* argv[] )
                 std::cout << "Frames complete: " << pkt.sequence_num << " / " << reader.Sources()[pkt.src].index.size() << '\r';
                 std::cout.flush();
             }
-        }catch(const std::runtime_error &e)
+        }catch(const std::runtime_error &)
         {
-            std::cout << "Runtime error: " << e.what() << std::endl;
-            throw e;
         }
         std::cout << std::endl << "+ done" << std::endl;
 
     }else{
-        std::cout << "Usage: \n\tPangolinVideoTransform file_in.pango file_out.pango" << std::endl;
+        std::cout << "Usage: \n\tPangoJsonTransform file_in.pango file_out.pango" << std::endl;
     }
 }
