@@ -29,4 +29,8 @@ Install dependencies and setup:
 
 Run:
 
+### Compiling ORB SLAM
 
+To be able to use the ORB SLAM libs (.so), you need to compile them. ORB SLAM requires OpenCV and ROS1. If you don't have them, run `install_ros1noetic.sh` and `install_opencv.sh`.
+
+Remaining dependencies alongside ORBSLAM will be installed via `setup_orb_slam.sh`.
