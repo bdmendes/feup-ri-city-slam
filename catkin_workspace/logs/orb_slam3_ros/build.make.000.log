@@ -1,0 +1,11 @@
+[ 31%] Built target orb_slam3_ros
+[ 39%] Built target DBoW2
+[ 40%] [32mBuilding CXX object CMakeFiles/ros_mono_inertial.dir/src/ros_mono_inertial.cc.o[0m
+In file included from [01m[K/home/marhcouto/Documents/feup-ri-city-slam/catkin_workspace/src/orb_slam3_ros/src/ros_mono_inertial.cc:7[m[K:
+[01m[K/home/marhcouto/Documents/feup-ri-city-slam/catkin_workspace/src/orb_slam3_ros/include/common.h:30:10:[m[K [01;31m[Kfatal error: [m[Korb_slam3_ros/SaveMap.h: No such file or directory
+   30 | #include [01;31m[K<orb_slam3_ros/SaveMap.h>[m[K // This file is created automatically, see here http://wiki.ros.org/ROS/Tutorials/CreatingMsgAndSrv#Creating_a_srv
+      |          [01;31m[K^~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+compilation terminated.
+make[2]: *** [CMakeFiles/ros_mono_inertial.dir/build.make:63: CMakeFiles/ros_mono_inertial.dir/src/ros_mono_inertial.cc.o] Error 1
+make[1]: *** [CMakeFiles/Makefile2:436: CMakeFiles/ros_mono_inertial.dir/all] Error 2
+make: *** [Makefile:141: all] Error 2

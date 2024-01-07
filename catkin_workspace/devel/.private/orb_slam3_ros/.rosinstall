@@ -1,0 +1,2 @@
+- setup-file:
+    local-name: /home/marhcouto/Documents/feup-ri-city-slam/catkin_workspace/devel/.private/orb_slam3_ros/setup.sh

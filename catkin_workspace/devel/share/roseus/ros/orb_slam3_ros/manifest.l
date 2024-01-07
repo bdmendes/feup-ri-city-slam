@@ -1,0 +1,1 @@
+/home/marhcouto/Documents/feup-ri-city-slam/catkin_workspace/devel/.private/orb_slam3_ros/share/roseus/ros/orb_slam3_ros/manifest.l

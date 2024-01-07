@@ -1,0 +1,1 @@
+/home/marhcouto/Documents/feup-ri-city-slam/catkin_workspace/devel/.private/duckie_sim_pkg/lib/pkgconfig/duckie_sim_pkg.pc
