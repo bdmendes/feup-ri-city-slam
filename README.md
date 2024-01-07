@@ -5,7 +5,7 @@ SLAM project with Duckietown for Intelligent Robotics, FEUP.
 - python==3.8
 - Ubuntu==20.04.6
 
-## Compiling and Running
+## Installing
 
 ### Install simulator dependencies and setup:
 
@@ -44,6 +44,8 @@ As in the [orb_slam3_ros repository]():
     python3 -c "import cv2; print(cv2.__version__)" 
     ```
 
+## Run in Simulator
+
 ### Build ROS Workspace
 
 From the root directory of the repo:
@@ -72,3 +74,6 @@ cd catkin_workspace
 source devel/setup.bash
 rosrun duckie_sim_pkg ros_script.py 
 ```
+
+## Run in Real Life
+

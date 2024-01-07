@@ -1,25 +1,3 @@
-[  0%] Built target std_msgs_generate_messages_lisp
-[  0%] Built target std_msgs_generate_messages_cpp
-[  0%] Built target std_msgs_generate_messages_nodejs
-[  7%] Built target DBoW2
-[  7%] Built target std_msgs_generate_messages_py
-[  7%] Built target std_msgs_generate_messages_eus
-[  7%] Built target _orb_slam3_ros_generate_messages_check_deps_SaveMap
-[ 41%] Built target g2o
-[ 42%] Built target orb_slam3_ros_generate_messages_nodejs
-[ 44%] Built target orb_slam3_ros_generate_messages_eus
-[ 45%] Built target orb_slam3_ros_generate_messages_cpp
-[ 47%] Built target orb_slam3_ros_generate_messages_py
-[ 48%] Built target orb_slam3_ros_generate_messages_lisp
-[ 48%] Built target orb_slam3_ros_generate_messages
-[ 80%] Built target orb_slam3_ros
-[ 81%] [32mBuilding CXX object CMakeFiles/ros_mono.dir/src/ros_mono.cc.o[0m
-[ 82%] [32mBuilding CXX object CMakeFiles/ros_rgbd_inertial.dir/src/ros_rgbd_inertial.cc.o[0m
-[ 83%] [32mBuilding CXX object CMakeFiles/ros_rgbd_inertial.dir/src/common.cc.o[0m
-[ 86%] Built target ros_mono_inertial
-[ 90%] Built target ros_stereo
-[ 91%] [32mBuilding CXX object CMakeFiles/ros_rgbd.dir/src/common.cc.o[0m
-[ 94%] Built target ros_stereo_inertial
 In file included from [01m[K/home/marhcouto/Documents/feup-ri-city-slam/catkin_workspace/src/orb_slam3_ros/orb_slam3/include/Frame.h:30[m[K,
                  from [01m[K/home/marhcouto/Documents/feup-ri-city-slam/catkin_workspace/src/orb_slam3_ros/orb_slam3/include/KeyFrame.h:28[m[K,
                  from [01m[K/home/marhcouto/Documents/feup-ri-city-slam/catkin_workspace/src/orb_slam3_ros/orb_slam3/include/MapPoint.h:23[m[K,
@@ -1860,9 +1838,3 @@ In file included from [01m[K/home/marhcouto/Documents/feup-ri-city-slam/catkin
 [01m[K/home/marhcouto/Documents/feup-ri-city-slam/catkin_workspace/src/orb_slam3_ros/src/common.cc:362:36:[m[K [01;35m[Kwarning: [m[Knarrowing conversion of ‘[01m[K(tfScalar)point_translation.tf::Vector3::z()[m[K’ from ‘[01m[KtfScalar[m[K’ {aka ‘[01m[Kdouble[m[K’} to ‘[01m[Kfloat[m[K’ [[01;35m[K-Wnarrowing[m[K]
   362 |                 [01;35m[Kpoint_translation.z()[m[K
       |                 [01;35m[K~~~~~~~~~~~~~~~~~~~^~[m[K
-[ 95%] [32m[1mLinking CXX executable /home/marhcouto/Documents/feup-ri-city-slam/catkin_workspace/devel/.private/orb_slam3_ros/lib/orb_slam3_ros/ros_mono[0m
-[ 96%] Built target ros_mono
-[ 97%] [32m[1mLinking CXX executable /home/marhcouto/Documents/feup-ri-city-slam/catkin_workspace/devel/.private/orb_slam3_ros/lib/orb_slam3_ros/ros_rgbd[0m
-[ 98%] Built target ros_rgbd
-[100%] [32m[1mLinking CXX executable /home/marhcouto/Documents/feup-ri-city-slam/catkin_workspace/devel/.private/orb_slam3_ros/lib/orb_slam3_ros/ros_rgbd_inertial[0m
-[100%] Built target ros_rgbd_inertial
