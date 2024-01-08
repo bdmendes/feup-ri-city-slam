@@ -1,5 +1,6 @@
+#! /bin/bash
 sudo apt install -y git curl \
-    python3 \
+    python3.8 \
     python3-pip \
     libbz2-dev \
     libffi-dev \
@@ -18,8 +19,9 @@ fi
 
 pyenv install 3.8.0
 pyenv local 3.8.0
-pip3 install --upgrade pip
+pip install --upgrade pip
 cd lib/gym-duckietown
-pip3 install -r requirements.txt
-pip3 install -e .
-pip3 install pyglet==1.5.0
+pip install pyglet==1.5.0
+pip install -r requirements.txt
+pip install -e .
+

@@ -1,0 +1,38 @@
+FROM ros:noetic
+
+RUN apt update && apt upgrade -y
+RUN apt install -y python3-catkin-tools
+
+WORKDIR /feup-ri-city-slam
+COPY lib/ lib/
+
+RUN apt install -y git curl \
+    python3.8 \
+    python3-pip \
+    libbz2-dev \
+    libffi-dev \
+    lzma liblzma-dev \
+    python-tk python3-tk tk-dev \
+    make build-essential libssl-dev zlib1g-dev \
+    libreadline-dev libsqlite3-dev wget llvm libncurses5-dev libncursesw5-dev \
+    xz-utils python-openssl python3-pil
+
+RUN pip install -r /feup-ri-city-slam/lib/gym-duckietown/requirements.txt
+RUN pip install pyglet==1.5.0
+RUN apt install -y freeglut3-dev
+RUN pip install -e /feup-ri-city-slam/lib/gym-duckietown
+
+WORKDIR /catkin_workspace/src
+COPY catkin_workspace/src/duckie_sim_pkg/ .
+WORKDIR /catkin_workspace
+RUN bash -c "source /opt/ros/noetic/setup.bash && \
+    rosdep install --from-paths src --ignore-src -r -y && \
+    catkin build"
+
+# nvidia-container-runtime
+ENV NVIDIA_VISIBLE_DEVICES \
+    ${NVIDIA_VISIBLE_DEVICES:-all}
+ENV NVIDIA_DRIVER_CAPABILITIES \
+    ${NVIDIA_DRIVER_CAPABILITIES:+$NVIDIA_DRIVER_CAPABILITIES,}graphics
+
+ENTRYPOINT [ "/bin/bash", "-c", "source devel/setup.bash && rosrun duckie_sim_pkg ros_script.py" ]

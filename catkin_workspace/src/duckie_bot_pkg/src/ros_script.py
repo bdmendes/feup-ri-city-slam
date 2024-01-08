@@ -1,14 +1,17 @@
-#!/usr/bin/env python
+#!/usr/bin/python3
+
 import rospy
 from std_msgs.msg import String
 from sensor_msgs.msg import Image, CompressedImage
 from cv_bridge import CvBridge, CvBridgeError
 
+pub = rospy.Publisher('/camera/image_raw', Image, queue_size=10)
 def callback(in_message : CompressedImage):
     """
     Converts the received CompressedImage message into a Image message
     and publishes it into the topic for ORBSLAM3 node to read
     """
+    rospy.loginfo("Got message")
 
     # Convert the compressed image message to an OpenCV image
     bridge = CvBridge()
@@ -16,7 +19,7 @@ def callback(in_message : CompressedImage):
 
     # Convert the OpenCV image to an Image message
     out_msg = bridge.cv2_to_imgmsg(cv_image, encoding="bgr8")
-
+    out_msg.header.stamp = rospy.Time.now()
     # # Publish Image for SLAM algorithm to receive
     # out_msg = Image()
     # out_msg.header.stamp = in_message.header
@@ -29,13 +32,10 @@ def callback(in_message : CompressedImage):
 
     pub.publish(out_msg)
 
-
 if __name__ == "__main__":
-
     # Create nodes
-    pub = rospy.Publisher('camera/image_raw', Image, queue_size=10)
-    rospy.init_node('image_publisher', anonymous=True)
-    rate = rospy.Rate(10) # 10hz
-    rospy.init_node('image_listener', anonymous=True)
+    rospy.init_node('image_translator', anonymous=True, log_level=rospy.ERROR)
+    rospy.loginfo("Starting image translator node")
+    # rate = rospy.Rate(10) # 10hz
     rospy.Subscriber('/pato/camera_node/image/compressed', CompressedImage, callback)
     rospy.spin()

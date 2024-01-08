@@ -1,0 +1,15 @@
+FROM ros:noetic
+
+RUN apt update && apt upgrade -y
+RUN apt install -y python3-catkin-tools 
+
+WORKDIR /catkin_workspace/src
+COPY catkin_workspace/src/duckie_bot_pkg/ .
+
+WORKDIR /catkin_workspace
+RUN bash -c "source /opt/ros/noetic/setup.bash && \
+    rosdep install --from-paths src --ignore-src -r -y && \
+    catkin build"
+
+# Replace xx.xx.xx.xx with the IP of the duckiebot
+ENTRYPOINT [ "/bin/bash", "-c", "echo '# xx.xx.xx.xx [duckiebot.hostname]' >> /etc/hosts && source devel/setup.bash && rosrun duckie_bot_pkg ros_script.py" ]
