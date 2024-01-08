@@ -1,0 +1,49 @@
+FROM ros:noetic
+
+RUN apt update && apt upgrade -y
+RUN apt install -y git \
+    python3-catkin-tools \
+    libeigen3-dev \
+    libopencv-dev \
+    ros-noetic-rviz
+
+WORKDIR /opt
+RUN git clone --recursive https://github.com/stevenlovegrove/Pangolin.git
+WORKDIR /opt/Pangolin
+RUN apt install -y libgl1-mesa-dev \
+    libwayland-dev \
+    libxkbcommon-dev \
+    wayland-protocols \
+    libegl1-mesa-dev \
+    libc++-dev \
+    libglew-dev \
+    libeigen3-dev \
+    cmake \
+    g++ \
+    ninja-build \
+    libjpeg-dev \
+    libpng-dev \
+    libavcodec-dev \
+    libavutil-dev \
+    libavformat-dev \
+    libswscale-dev \
+    libavdevice-dev
+WORKDIR /opt/Pangolin/build
+RUN cmake .. && make && make install
+RUN apt install -y ros-noetic-hector-trajectory-server
+
+WORKDIR /catkin_workspace/src
+COPY catkin_workspace/src/orb_slam3_ros/ .
+WORKDIR /catkin_workspace
+RUN bash -c "source /opt/ros/noetic/setup.bash && \
+    rosdep install --from-paths src --ignore-src -r -y && \
+    catkin build"
+
+# nvidia-container-runtime
+ENV NVIDIA_VISIBLE_DEVICES \
+    ${NVIDIA_VISIBLE_DEVICES:-all}
+ENV NVIDIA_DRIVER_CAPABILITIES \
+    ${NVIDIA_DRIVER_CAPABILITIES:+$NVIDIA_DRIVER_CAPABILITIES,}graphics
+
+# Replace xx.xx.xx.xx with the IP of the duckiebot
+ENTRYPOINT [ "/bin/bash", "-c", "echo '# xx.xx.xx.xx [duckiebot.hostname]' >> /etc/hosts && source devel/setup.bash && roslaunch orb_slam3_ros duckie_sim.launch" ]

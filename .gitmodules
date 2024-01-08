@@ -1,0 +1,3 @@
+[submodule "catkin_workspace/src/orb_slam3_ros"]
+	path = catkin_workspace/src/orb_slam3_ros
+	url = https://github.com/marhcouto/orb_slam3_ros.git
