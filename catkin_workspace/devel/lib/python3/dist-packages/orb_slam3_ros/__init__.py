@@ -1,1 +1,0 @@
-/home/marhcouto/Documents/feup-ri-city-slam/catkin_workspace/devel/.private/orb_slam3_ros/lib/python3/dist-packages/orb_slam3_ros/__init__.py

@@ -1,8 +1,0 @@
-prefix=/home/marhcouto/Documents/feup-ri-city-slam/catkin_workspace/devel/.private/duckie_sim_pkg
-
-Name: duckie_sim_pkg
-Description: Description of duckie_sim_pkg
-Version: 0.0.0
-Cflags: 
-Libs: -L${prefix}/lib 
-Requires: 
