@@ -1,5 +1,19 @@
 # feup-ri-city-slam
-SLAM project with Duckietown for Intelligent Robotics, FEUP.
+<div style="height:100px;text-align:center;margin-bottom:20px">
+  <img src="docs/images/feup.png">
+</div>
+
+SLAM project with Duckietown for [Intelligent Robotics (M.EIC041)](https://sigarra.up.pt/feup/en/UCURR_GERAL.FICHA_UC_VIEW?pv_ocorrencia_id=518841), FEUP.
+
+## Directory Structure
+- `catkin_workspace`: ROS workspace for the ORB SLAM 3 ROS package
+  - `src`: ROS packages
+    - `duckie_bot_pkg`: ROS package for a translator from [CompressedImage](http://docs.ros.org/en/noetic/api/sensor_msgs/html/msg/CompressedImage.html) to [Image](http://docs.ros.org/en/noetic/api/sensor_msgs/html/msg/Image.html)
+    - `duckie_sim_pkg`: ROS package for the DuckieTown Gym Simulator, with a script to publish images from the simulator to a ROS topic
+    - `orb_slam3_ros`: ROS package for [ORB-SLAM 3](https://github.com/marhcouto/orb_slam3_ros)
+- `assets`: Assets used in the project
+- `lib`: Libraries used in the project
+  - `gym-duckietown`: DuckieTown Gym Simulator
 
 ## Prerequisites for running ORB SLAM 3 locally with the DuckieTown Gym Simulator 
 - python==3.8
@@ -148,3 +162,8 @@ dts duckiebot demo --demo_name lane_following --duckiebot_name pato
 # Start the keyboard control demo with the line following control
 dts dts duckiebot keyboard_control pato
 ```
+## Authors
+- [Bruno Mendes](mailto:up201906166@edu.fe.up.pt)
+- [Fernando Rego](mailto:up201905951@edu.fe.up.pt)
+- [José Costa](mailto:up201907216@edu.fe.up.pt)
+- [Marcelo Couto](mailto:up201906086@edu.fe.up.pt)
